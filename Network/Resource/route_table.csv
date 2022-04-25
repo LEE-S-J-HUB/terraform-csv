@@ -1,0 +1,3 @@
+rt_identifier,vpc_identifier,name_tag_postfix
+pub-lb,public,pub-lb
+pub-web,public,pub-web

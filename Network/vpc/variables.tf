@@ -20,6 +20,28 @@ variable "sub_data" {
     }))
 }
 
+variable "rt_data" {
+    type = list(object({    
+        rt_identifier           = string
+        vpc_identifier          = string
+        name_tag_postfix        = string
+    }))
+}
+
+variable "rtp_data" {
+    type = list(object({
+        rt_identifier                   = string
+        association_subnets             = string 
+        rtp_identifier                  = string 
+        target_type                     = string 
+        target_identifier               = string
+        destination_type                = string
+        destination_address             = string
+        
+    }))
+}
+
+
 variable "name_tag_middle" {
     type                        = string
 }
