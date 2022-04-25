@@ -13,3 +13,7 @@ output "subnet" {
 output "nat_gateway" {
     value = aws_nat_gateway.this
 }
+
+output "route_table" {
+    value = aws_route_table.this
+}

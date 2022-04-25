@@ -14,3 +14,6 @@ output "nat" {
     value = module.vpc.nat_gateway
 }
 
+output "route_table" {
+    value = module.vpc.route_table
+}
