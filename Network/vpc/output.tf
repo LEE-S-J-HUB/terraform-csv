@@ -5,3 +5,11 @@ output "vpc" {
 output "internet_gateway" {
     value = aws_internet_gateway.this
 }
+
+output "subnet" {
+    value = aws_subnet.this
+}
+
+output "nat_gateway" {
+    value = aws_nat_gateway.this
+}
