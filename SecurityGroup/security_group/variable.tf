@@ -14,30 +14,16 @@ variable "vpc_id_list" {
     type = map
 }
 
-# variable "ingress_policy_list" {
-#     type    = list(object({
-#         policy_type                 = string
-#         identifier                  = string
-#         security_group_identifier   = string
-#         from_port                   = number
-#         to_port                     = number
-#         protocol                    = string
-#         cidr_blocks                 = list(string)
-#         source_security_group_id    = string
-#         description                 = string
-#     }))
-# }
-
-# variable "egress_policy_list" {
-#     type    = list(object({
-#         policy_type                 = string
-#         identifier                  = string
-#         security_group_identifier   = string
-#         from_port                   = number
-#         to_port                     = number
-#         protocol                    = string
-#         cidr_blocks                 = list(string)
-#         source_security_group_id    = string
-#         description                 = string
-#     }))
-# }
+variable "security_group_rule_list" {
+    type    = list(object({
+        security_group_identifier   = string
+        rule_type                 = string
+        source_type                 = string
+        from_port                   = number
+        to_port                     = number
+        protocol                    = string
+        cidr_block                  = string
+        source_security_group_id    = string
+        description                 = string
+    }))
+}

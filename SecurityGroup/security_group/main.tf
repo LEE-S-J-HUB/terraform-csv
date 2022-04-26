@@ -7,47 +7,24 @@ resource "aws_security_group" "security_group" {
     }
 }
 
-# resource "aws_security_group_rule" "egress_with_cidr_blocks" {
-#     type                        = "egress"
-#     for_each                    = { for egress_cidr in var.egress_policy_list : egress_cidr.identifier => egress_cidr if egress_cidr.policy_type == "cidr_blocks"}
-#     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
-#     from_port                   = lookuph.value, "from_port", null)
-#     to_port                     = lookup(each.value, "to_port", null)
-#     protocol                    = lookup(each.value, "protocol", null)
-#     cidr_blocks                 = lookup(each.value, "cidr_blocks", null)
-#     description                 = lookup(each.value, "description", null)
-# }
+resource "aws_security_group_rule" "security_group_rule_cidr_blocks" {
+    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}-${sgp.rule_type}-${sgp.from_port}-${sgp.from_port}" => sgp if sgp.source_type == "cidr_blocks"}
+    type                        = each.value.rule_type
+    security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
+    from_port                   = each.value.from_port
+    to_port                     = each.value.to_port
+    protocol                    = each.value.protocol
+    cidr_blocks                 = ["${each.value.cidr_block}"]
+    description                 = each.value.description
+}
 
-# resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
-#     type                        = "ingress"
-#     for_each                    = { for ingress_cidr in var.ingress_policy_list : ingress_cidr.identifier => ingress_cidr if ingress_cidr.policy_type == "cidr_blocks"}
-#     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
-#     from_port                   = lookup(each.value, "from_port", null)
-#     to_port                     = lookup(each.value, "to_port", null)
-#     protocol                    = lookup(each.value, "protocol", null)
-#     cidr_blocks                 = lookup(each.value, "cidr_blocks", null)
-#     description                 = lookup(each.value, "description", null)
-# }
-
-# resource "aws_security_group_rule" "ingress_with_source_security_group_id" {
-#     type                        = "ingress"
-#     for_each                    = { for ingress_ssgi in var.ingress_policy_list : ingress_ssgi.identifier => ingress_ssgi if ingress_ssgi.policy_type == "source_security_group_id"}
-#     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
-#     from_port                   = lookup(each.value, "from_port", null)
-#     to_port                     = lookup(each.value, "to_port", null)
-#     protocol                    = lookup(each.value, "protocol", null)
-#     source_security_group_id    = aws_security_group.security_group["${each.value.source_security_group_id}"].id
-#     description                 = lookup(each.value, "description", null)
-# }
-
-# resource "aws_security_group_rule" "egress_with_source_security_group_id" {
-#     type                        = "egress"
-#     for_each                    = { for egress_ssgi in var.egress_policy_list : egress_ssgi.identifier => egress_ssgi if egress_ssgi.policy_type == "source_security_group_id"}
-#     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
-#     from_port                   = lookup(each.value, "from_port", null)
-#     to_port                     = lookup(each.value, "to_port", null)
-#     protocol                    = lookup(each.value, "protocol", null)
-#     source_security_group_id    = aws_security_group.security_group["${each.value.source_security_group_id}"].id
-#     description                 = lookup(each.value, "description", null)
-
-# }
+resource "aws_security_group_rule" "security_group_rule_source_security_group_id" {
+    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}-${sgp.rule_type}-${sgp.from_port}-${sgp.from_port}" => sgp if sgp.source_type == "source_security_group_id"}
+    type                        = each.value.rule_type
+    security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
+    from_port                   = each.value.from_port
+    to_port                     = each.value.to_port
+    protocol                    = each.value.protocol
+    source_security_group_id    = "${each.value.source_security_group_id}"
+    description                 = each.value.description
+}
