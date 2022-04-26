@@ -30,7 +30,7 @@ resource "aws_instance" "this" {
         }
     }
     tags = {
-        "Name" = "scg-${var.name_tag_middle}-${each.value.identifier}"
+        "Name" = "ec2-${var.name_tag_middle}-${each.value.identifier}"
     }
 }
 

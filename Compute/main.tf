@@ -3,7 +3,7 @@ locals {
     kms_ebs_dev             = "arn:aws:kms:ap-northeast-2:304149346685:key/50b78494-f91d-4dff-af74-a9d01eefc5b2"
     # kms key arn으로 작성 필요
     ec2_default_user_data   = <<EOF
-cloud-config
+#cloud-config
 system_info:
   default_user:
     name: sysadmin
