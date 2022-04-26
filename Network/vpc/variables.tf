@@ -31,13 +31,19 @@ variable "rt_data" {
 variable "rtp_data" {
     type = list(object({
         rt_identifier                   = string
-        association_subnets             = string 
         rtp_identifier                  = string 
         target_type                     = string 
         target_identifier               = string
         destination_type                = string
         destination_address             = string
         
+    }))
+}
+
+variable "rta_data" {
+    type = list(object({
+        rt_identifier = string
+        association_subent_identifier = string
     }))
 }
 

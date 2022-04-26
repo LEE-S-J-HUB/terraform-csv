@@ -1,4 +1,4 @@
-output "security_group" {
+output "security_group_id" {
     value = { for k,sg in module.create-security_group.security_group : k => sg.id }
 }
 

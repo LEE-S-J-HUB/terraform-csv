@@ -12,5 +12,23 @@ module "vpc" {
     sub_data            = csvdecode(local.sub_csv)
     rt_data             = csvdecode(local.rt_csv)
     rtp_data            = csvdecode(local.rtp_csv)
+    rta_data            = [
+        {
+            rt_identifier                   = "pub-lb"
+            association_subent_identifier   = "pub-lb-a"
+        },
+        {
+            rt_identifier                   = "pub-lb"
+            association_subent_identifier   = "pub-lb-c"
+        },
+        {
+            rt_identifier                   = "pub-web"
+            association_subent_identifier   = "pub-web-a"
+        },
+        {
+            rt_identifier                   = "pub-web"
+            association_subent_identifier   = "pub-web-c"
+        }
+    ]
     name_tag_middle     = local.name_tag_middle
 }

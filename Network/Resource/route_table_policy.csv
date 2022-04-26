@@ -1,3 +1,2 @@
-rt_identifier,association_subnets,rtp_identifier,target_type,target_identifier,destination_type,destination_address
-"pub-lb","pub-lb-a, pub-lb-c",igw,gateway_id,public,cidr_block,0.0.0.0/0
-"pub-web","pub-web-a, pub-web-c",,,,,
+rt_identifier,rtp_identifier,target_type,target_identifier,destination_type,destination_address
+pub-lb,igw,gateway_id,public,cidr_block,0.0.0.0/0

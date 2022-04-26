@@ -50,6 +50,12 @@ resource "aws_route_table" "this" {
     }
 }
 
+resource "aws_route_table_association" "this" {
+    for_each        = { for rta in var.rta_data : rta.association_subent_identifier => rta }
+    route_table_id  = aws_route_table.this["${each.value.rt_identifier}"].id
+    subnet_id   = aws_subnet.this["${each.value.association_subent_identifier}"].id
+}
+
 # aws_route type cidr_block
 resource "aws_route" "carrier_gateway_cidr_block" {
     for_each                    = { for rtp in var.rtp_data : rtp.rt_identifier => rtp if rtp.target_type == "carrier_gateway" && rtp.destination_type == "cidr_block"}
