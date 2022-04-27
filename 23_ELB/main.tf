@@ -6,8 +6,8 @@ module "elb" {
   source  = "../00_Module/elb/"
   elbs    = [
     {
-      identifier                  = "xalb-an2-tc01-dev-web"
-      name                        = "xalb-an2-tc01-dev-web"
+      identifier                  = "xalb-${local.name_tag_middle}-web"
+      name                        = "xalb-${local.name_tag_middle}-web"
       load_balancer_type          = "application"
       security_group              = ["${data.terraform_remote_state.Security_Group.outputs.security_group_id["xalb"]}"]
       internal                    = false
