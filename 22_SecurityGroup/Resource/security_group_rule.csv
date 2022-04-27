@@ -2,5 +2,7 @@ security_group_identifier,rule_type,source_type,from_port,to_port,protocol,cidr_
 "bestion","ingress","cidr_blocks",22,22,"tcp","0.0.0.0/0",,
 "bestion","ingress","cidr_blocks",10022,10022,"tcp","0.0.0.0/0",,
 "bestion","egress","cidr_blocks",0,0,"-1","0.0.0.0/0",,
+"xalb","ingress","cidr_blocks",80,80,"-1","0.0.0.0/0",,
+"xalb","egress","cidr_blocks",0,0,"-1","0.0.0.0/0",,
 "web","ingress","cidr_blocks",10022,10022,"tcp","0.0.0.0/0",,
 "web","egress","cidr_blocks",0,0,"-1","0.0.0.0/0",,

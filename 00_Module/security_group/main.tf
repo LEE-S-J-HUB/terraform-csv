@@ -8,23 +8,27 @@ resource "aws_security_group" "security_group" {
 }
 
 resource "aws_security_group_rule" "security_group_rule_cidr_blocks" {
-    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}-${sgp.rule_type}-${sgp.from_port}-${sgp.from_port}" => sgp if sgp.source_type == "cidr_blocks"}
+    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}_${sgp.rule_type}_${sgp.from_port}_${sgp.from_port}_${sgp.cidr_block}" => sgp if sgp.source_type == "cidr_blocks"}
     type                        = each.value.rule_type
     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
     from_port                   = each.value.from_port
     to_port                     = each.value.to_port
     protocol                    = each.value.protocol
     cidr_blocks                 = ["${each.value.cidr_block}"]
+    ipv6_cidr_blocks            = null
+    prefix_list_ids             = null
     description                 = each.value.description
 }
 
 resource "aws_security_group_rule" "security_group_rule_source_security_group_id" {
-    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}-${sgp.rule_type}-${sgp.from_port}-${sgp.from_port}" => sgp if sgp.source_type == "source_security_group_id"}
+    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}_${sgp.rule_type}_${sgp.from_port}_${sgp.from_port}_${sgp.source_security_group_id}" => sgp if sgp.source_type == "source_security_group_id"}
     type                        = each.value.rule_type
     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
     from_port                   = each.value.from_port
     to_port                     = each.value.to_port
     protocol                    = each.value.protocol
     source_security_group_id    = "${each.value.source_security_group_id}"
+    cidr_blocks                 = null
+    prefix_list_ids             = null
     description                 = each.value.description
 }

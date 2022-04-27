@@ -5,7 +5,7 @@ locals {
 }
 
 module "create-security_group" {
-    source          = "./security_group"
+    source          = "../00_Module/security_group"
     vpc_id_list     = data.terraform_remote_state.Network.outputs.vpc_id
     sgs                      = csvdecode(local.sgs_csv)
     security_group_rule_list = csvdecode(local.sgrs_csv)

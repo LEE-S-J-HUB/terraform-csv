@@ -57,7 +57,7 @@ EOF
 }
 
 module "create-ec2_instance" {
-    source = "./create-ec2_instace"
+    source = "../00_Module/ec2"
     ec2 = [
         {
             identifier              = "bestion"

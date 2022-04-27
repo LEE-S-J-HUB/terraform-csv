@@ -7,7 +7,7 @@ locals {
 }
 
 module "vpc" {
-    source              = "./vpc/"
+    source              = "../00_Module/vpc/"
     vpc_data            = csvdecode(local.vpc_csv)
     sub_data            = csvdecode(local.sub_csv)
     rt_data             = csvdecode(local.rt_csv)
