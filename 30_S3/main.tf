@@ -15,6 +15,7 @@ module "s3" {
             ignore_public_acls          = true
             restrict_public_buckets     = true
             s3_bucket_versioning        = "Disabled"
+            object_ownership            = "BucketOwnerPreferred"
         }
     ]
     name_tag_middle                     = local.name_tag_middle

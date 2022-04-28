@@ -1,4 +1,4 @@
-variable "vpc_data"{
+variable "vpcs"{
     type = list(object({
         identifier              = string
         vpc_cidr                = string
@@ -9,7 +9,7 @@ variable "vpc_data"{
 }
 
 
-variable "sub_data" {
+variable "subnets" {
     type = list(object({
         identifier              = string
         vpc_identifier          = string 
@@ -20,7 +20,7 @@ variable "sub_data" {
     }))
 }
 
-variable "rt_data" {
+variable "rts" {
     type = list(object({    
         rt_identifier           = string
         vpc_identifier          = string
@@ -28,7 +28,7 @@ variable "rt_data" {
     }))
 }
 
-variable "rtp_data" {
+variable "rtps" {
     type = list(object({
         rt_identifier                   = string
         rtp_identifier                  = string 
@@ -40,7 +40,7 @@ variable "rtp_data" {
     }))
 }
 
-variable "rta_data" {
+variable "rtas" {
     type = list(object({
         rt_identifier = string
         association_subent_identifier = string

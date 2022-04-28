@@ -31,3 +31,11 @@ resource "aws_s3_bucket_versioning" "this" {
         status      = "${each.value.s3_bucket_versioning}"
     }
 }
+
+resource "aws_s3_bucket_ownership_controls" "this" {
+    for_each                    = { for s3 in var.s3s : s3.bucket => s3 if s3.bucket != null}
+    bucket                      = aws_s3_bucket.this["${each.value.bucket}"].bucket
+    rule {
+      object_ownership = "${each.value.object_ownership}"
+    }
+}

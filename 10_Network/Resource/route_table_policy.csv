@@ -1,3 +1,0 @@
-rt_identifier,rtp_identifier,target_type,target_identifier,destination_type,destination_address
-pub-lb,igw,gateway_id,public,cidr_block,0.0.0.0/0
-pub-web,ngw,nat_gateway_id,pub-lb-a,cidr_block,0.0.0.0/0

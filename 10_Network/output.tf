@@ -17,3 +17,6 @@ output "nat_id" {
 output "route_table" {
     value = { for k,rt in module.vpc.route_table : k => rt.id }
 }
+# output "vpc_flow_logs" {
+#     value = { for k,rt in module.vpc_flow_log.vpc_flow_logs : k => rt.id }
+# }

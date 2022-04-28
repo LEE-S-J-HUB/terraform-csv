@@ -13,5 +13,6 @@ variable "s3s" {
         ignore_public_acls          = bool
         restrict_public_buckets     = bool    
         s3_bucket_versioning        = string 
+        object_ownership            = string
     }))
 }

@@ -1,3 +1,0 @@
-name_tag_postfix,identifier,vpc_cidr,attach_igw,enable_dns_hostname
-pub,public,192.168.1.0/24,true,true
-pri,private,192.168.2.0/24,false,true
