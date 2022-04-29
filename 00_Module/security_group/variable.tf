@@ -16,14 +16,14 @@ variable "vpc_id_list" {
 
 variable "security_group_rule_list" {
     type    = list(object({
-        security_group_identifier   = string
-        rule_type                 = string
-        source_type                 = string
-        from_port                   = number
-        to_port                     = number
-        protocol                    = string
-        cidr_block                  = string
-        source_security_group_id    = string
-        description                 = string
+        security_group_identifier           = string
+        rule_type                           = string
+        source_type                         = string
+        from_port                           = number
+        to_port                             = number
+        protocol                            = string
+        cidr_block                          = string
+        source_security_group_identifier    = string
+        description                         = string
     }))
 }

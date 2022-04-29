@@ -21,13 +21,13 @@ resource "aws_security_group_rule" "security_group_rule_cidr_blocks" {
 }
 
 resource "aws_security_group_rule" "security_group_rule_source_security_group_id" {
-    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}_${sgp.rule_type}_${sgp.from_port}_${sgp.from_port}_${sgp.source_security_group_id}" => sgp if sgp.source_type == "source_security_group_id"}
+    for_each                    = { for sgp in var.security_group_rule_list : "${sgp.security_group_identifier}_${sgp.rule_type}_${sgp.from_port}_${sgp.from_port}_${sgp.source_security_group_identifier}" => sgp if sgp.source_type == "source_security_group_id"}
     type                        = each.value.rule_type
     security_group_id           = aws_security_group.security_group["${each.value.security_group_identifier}"].id
     from_port                   = each.value.from_port
     to_port                     = each.value.to_port
     protocol                    = each.value.protocol
-    source_security_group_id    = "${each.value.source_security_group_id}"
+    source_security_group_id    = aws_security_group.security_group["${each.value.source_security_group_identifier}"].id
     cidr_blocks                 = null
     prefix_list_ids             = null
     description                 = each.value.description

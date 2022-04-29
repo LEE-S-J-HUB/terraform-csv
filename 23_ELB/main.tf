@@ -17,3 +17,10 @@ module "elb" {
   ]
   name_tag_middle         = local.name_tag_middle
 }
+
+resource "aws_lb_target_group" this {
+  name      = "tg-${local.name_tag_middle}-web-80"
+  port      = 80
+  protocol  = "HTTP"
+  vpc_id    = data.terraform_remote_state.Network.outputs.vpc_id["public"]
+}
